@@ -7,4 +7,7 @@
     <string name="history">History</string>
     <string name="learn_more">Learn More</string>
     <string name="add_plant">+ Add Plant</string>
+    <string name="go_to_dash">Continue</string>
+    <string name="title_activity_main2">Main2Activity</string>
+
 </resources>

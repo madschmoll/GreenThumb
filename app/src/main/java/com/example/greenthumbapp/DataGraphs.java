@@ -1,40 +1,6 @@
 package com.example.greenthumbapp;
 
-import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.design.widget.BottomNavigationView;
-import android.support.v7.app.AppCompatActivity;
-import android.view.MenuItem;
-import android.widget.TextView;
-import android.widget.Button;
-import android.view.View;
 import android.content.Intent;
-
-
-public class MainActivity extends AppCompatActivity {
-    private TextView mTextMessage;
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
-
-    }
-
-    public void goToMyPlants(View v){
-        if(v.getId() == R.id.my_plants){
-            //handle the click here and make whatever you want
-            startActivity(new Intent(MainActivity.this, MyPlants.class));
-        }
-    }
-
-
-}
-
-/*
-package com.example.greenthumbapp;
-
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -49,7 +15,7 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity {
+public class DataGraphs extends AppCompatActivity {
     private static final String TAG = "DataGraphs";
     private LineGraphSeries<DataPoint> series1;
     private Button addPoint;
@@ -136,10 +102,15 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * Sorts an ArrayList<XYValue> with respect to the x values.
+     * @param array
+     * @return
+     */
     private ArrayList<XYvalues> sortArray(ArrayList<XYvalues> array){
-
+        /*
         //Sorts the xyValues in Ascending order to prepare them for the PointsGraphSeries<DataSet>
-
+         */
         int factor = Integer.parseInt(String.valueOf(Math.round(Math.pow(array.size(),2))));
         int m = array.size() - 1;
         int count = 0;
@@ -185,8 +156,25 @@ public class MainActivity extends AppCompatActivity {
         return array;
     }
 
+    /**
+     * customizable toast
+     * @param message
+     */
     private void toastMessage(String message){
         Toast.makeText(this,message, Toast.LENGTH_SHORT).show();
     }
-}*/
 
+    public void goToMyPlants(View v){
+        if(v.getId() == R.id.my_plants){
+            //handle the click here and make whatever you want
+            startActivity(new Intent(DataGraphs.this, MyPlants.class));
+        }
+    }
+
+    /*public void goToLearnMore(View v){
+        if(v.getId() == R.id.learn_more){
+            //handle the click here and make whatever you want
+            startActivity(new Intent(DataGraphs.this, LearnMore.class));
+        }
+    }*/
+}
