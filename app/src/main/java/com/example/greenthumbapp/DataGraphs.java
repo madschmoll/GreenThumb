@@ -83,20 +83,20 @@ public class DataGraphs extends AppCompatActivity {
         series1.setColor(Color.BLUE);
 
         //set Scrollable and Scaleable
-        plot.getViewport().setScalable(true);
-        plot.getViewport().setScalableY(true);
-        plot.getViewport().setScrollable(true);
-        plot.getViewport().setScrollableY(true);
+        plot.getViewport().setScalable(false);
+        plot.getViewport().setScalableY(false);
+        plot.getViewport().setScrollable(false);
+        plot.getViewport().setScrollableY(false);
 
         //set manual x bounds
         plot.getViewport().setYAxisBoundsManual(true);
         plot.getViewport().setMaxY(150);
-        plot.getViewport().setMinY(-150);
+        plot.getViewport().setMinY(0);
 
         //set manual y bounds
         plot.getViewport().setXAxisBoundsManual(true);
         plot.getViewport().setMaxX(150);
-        plot.getViewport().setMinX(-150);
+        plot.getViewport().setMinX(0);
 
         plot.addSeries(series1);
 

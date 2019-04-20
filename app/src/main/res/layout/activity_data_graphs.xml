@@ -70,7 +70,7 @@
             android:id="@+id/graph"
             android:layout_width="348dp"
             android:layout_height="233dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="92dp"
             app:layout_constrainedHeight="true"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.492"

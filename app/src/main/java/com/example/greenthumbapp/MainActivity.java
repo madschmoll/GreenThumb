@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
     public void goToMyPlants(View v){
         if(v.getId() == R.id.my_plants){
             //handle the click here and make whatever you want
-            startActivity(new Intent(MainActivity.this, LearnMore.class));
+            startActivity(new Intent(MainActivity.this, Bluetooth.class));
         }
     }
 
