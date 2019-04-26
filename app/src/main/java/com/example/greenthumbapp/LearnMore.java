@@ -2,7 +2,10 @@ package com.example.greenthumbapp;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import android.support.v4.app.Fragment;
+import android.view.LayoutInflater;
+import android.view.ViewGroup;
+//import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -13,7 +16,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.HashMap;
-public class LearnMore extends AppCompatActivity {
+public class LearnMore extends Fragment {
     String API_KEY = "b1da5642a72e4cc4b9edc6e0a66eee0c";
     String CATEGORY = "home-gardening";
     ListView listNews;
@@ -26,19 +29,21 @@ public class LearnMore extends AppCompatActivity {
     static final String KEY_URLTOIMAGE = "urlToImage";
     static final String KEY_PUBLISHEDAT = "publishedAt";
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.fragment_learn_more);
-        listNews = (ListView) findViewById(R.id.listNews);
-        loader = (ProgressBar) findViewById(R.id.loader);
+        View rootView = inflater.inflate(R.layout.fragment_learn_more, container, false);
+        listNews = (ListView) rootView.findViewById(R.id.listNews);
+        loader = (ProgressBar) rootView.findViewById(R.id.loader);
         listNews.setEmptyView(loader);
-        if(LearnMoreFunction.isNetworkAvailable(getApplicationContext()))
+        if(LearnMoreFunction.isNetworkAvailable(getActivity().getApplicationContext()))
         {
             DownloadNews newsTask = new DownloadNews();
             newsTask.execute();
         }else{
-            Toast.makeText(getApplicationContext(), "No Internet Connection", Toast.LENGTH_LONG).show();
+            Toast.makeText(getActivity().getApplicationContext(), "No Internet Connection", Toast.LENGTH_LONG).show();
         }
+        return inflater.inflate(R.layout.fragment_learn_more, container, false);
     }
     class DownloadNews extends AsyncTask<String, Void, String> {
         @Override
@@ -69,20 +74,20 @@ public class LearnMore extends AppCompatActivity {
                         dataList.add(map);
                     }
                 } catch (JSONException e) {
-                    Toast.makeText(getApplicationContext(), "Unexpected error", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity().getApplicationContext(), "Unexpected error", Toast.LENGTH_SHORT).show();
                 }
-                ListArticleAdapter adapter = new ListArticleAdapter(LearnMore.this, dataList);
+                ListArticleAdapter adapter = new ListArticleAdapter(getActivity(), dataList);
                 listNews.setAdapter(adapter);
                 listNews.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     public void onItemClick(AdapterView<?> parent, View view,
                                             int position, long id) {
-                        Intent i = new Intent(LearnMore.this, LearnMoreDetailsActivity.class);
+                        Intent i = new Intent(getActivity(), LearnMoreDetailsActivity.class);
                         i.putExtra("url", dataList.get(+position).get(KEY_URL));
                         startActivity(i);
                     }
                 });
             }else{
-                Toast.makeText(getApplicationContext(), "No news found", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity().getApplicationContext(), "No news found", Toast.LENGTH_SHORT).show();
             }
         }
     }

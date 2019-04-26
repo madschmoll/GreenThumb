@@ -16,8 +16,8 @@
 
         <ImageView
             android:id="@+id/plant1"
-            android:layout_width="349dp"
-            android:layout_height="206dp"
+            android:layout_width="360dp"
+            android:layout_height="173dp"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
             android:layout_marginBottom="36dp"
@@ -26,10 +26,10 @@
 
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.574"
+            app:layout_constraintHorizontal_bias="0.581"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.033" />
+            app:layout_constraintVertical_bias="0.031" />
 
         <ImageView
             android:id="@+id/plant1Icon"
@@ -77,10 +77,105 @@
 
             app:layout_constraintBottom_toBottomOf="@+id/plant1"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.036"
+            app:layout_constraintHorizontal_bias="0.05"
             app:layout_constraintStart_toStartOf="@+id/plant1"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.114" />
+            app:layout_constraintVertical_bias="0.208"
+            android:layout_alignStart="@id/plant1"/>
+
+        <TextView
+            android:id="@+id/smv_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_alignLeft="@id/plant1"
+            android:layout_alignTop="@id/plant1"
+            android:layout_alignRight="@id/plant1"
+            android:layout_alignBottom="@id/plant1"
+
+            android:layout_margin="1dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginBottom="8dp"
+
+            android:gravity="center"
+            android:text="Soil Moisture Value:"
+            android:textColor="#4f4c4d"
+            android:textSize="20sp"
+
+            app:layout_constraintBottom_toBottomOf="@+id/plant1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.54"
+            app:layout_constraintStart_toStartOf="@+id/plant1"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.201"
+            android:layout_alignStart="@id/plant1" />
+
+
+        <TextView
+            android:id="@+id/plant1SoilMoistureValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_alignLeft="@id/plant1"
+            android:layout_alignTop="@id/plant1"
+            android:layout_alignRight="@id/plant1"
+            android:layout_alignBottom="@id/plant1"
+
+            android:layout_margin="1dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginBottom="8dp"
+
+            android:gravity="center"
+            android:text="76"
+            android:textColor="#4f4c4d"
+            android:textSize="80sp"
+
+            app:layout_constraintBottom_toBottomOf="@+id/plant1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.483"
+            app:layout_constraintStart_toStartOf="@+id/plant1"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.827"
+            android:layout_alignStart="@id/plant1" />
+
+        <TextView
+            android:id="@+id/percentSign"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_alignLeft="@id/plant1"
+            android:layout_alignTop="@id/plant1"
+            android:layout_alignRight="@id/plant1"
+            android:layout_alignBottom="@id/plant1"
+
+            android:layout_margin="1dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginBottom="8dp"
+
+            android:gravity="center"
+            android:text="%"
+            android:textColor="#4f4c4d"
+            android:textSize="80sp"
+
+            app:layout_constraintBottom_toBottomOf="@+id/plant1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.837"
+            app:layout_constraintStart_toStartOf="@+id/plant1"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.879"
+            android:layout_alignStart="@id/plant1" />
 
 
     </android.support.constraint.ConstraintLayout>
