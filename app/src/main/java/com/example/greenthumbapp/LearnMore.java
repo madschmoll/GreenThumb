@@ -28,7 +28,7 @@ public class LearnMore extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_learn_more);
+        setContentView(R.layout.fragment_learn_more);
         listNews = (ListView) findViewById(R.id.listNews);
         loader = (ProgressBar) findViewById(R.id.loader);
         listNews.setEmptyView(loader);
