@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MyPlants">
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/frameLayout"
+        android:layout_width="match_parent"
+        android:layout_height="721dp"
+        android:layout_gravity="center"
+        android:minHeight="250dp"
+        tools:layout_editor_absoluteY="5dp">
+
+        <ImageView
+            android:id="@+id/plant1"
+            android:layout_width="349dp"
+            android:layout_height="206dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginBottom="36dp"
+            android:background="@drawable/button_shadow"
+            android:contentDescription="my_plant_1"
+
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.574"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.033" />
+
+        <ImageView
+            android:id="@+id/plant1Icon"
+            android:layout_width="80dp"
+            android:layout_height="85dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/flower_icon"
+            android:contentDescription="my_plant1_icon"
+            app:layout_constraintBottom_toBottomOf="@+id/plant1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/plant1"
+            app:layout_constraintTop_toBottomOf="@+id/plant1Name"
+            app:layout_constraintVertical_bias="0.39" />
+
+
+        <TextView
+            android:id="@+id/plant1Name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_alignLeft="@id/plant1"
+            android:layout_alignTop="@id/plant1"
+            android:layout_alignRight="@id/plant1"
+            android:layout_alignBottom="@id/plant1"
+
+            android:layout_margin="1dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginBottom="8dp"
+
+            android:gravity="center"
+            android:text="Tulip"
+            android:textColor="#4f4c4d"
+            android:textSize="30sp"
+
+            app:layout_constraintBottom_toBottomOf="@+id/plant1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.036"
+            app:layout_constraintStart_toStartOf="@+id/plant1"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.114" />
+
+
+    </android.support.constraint.ConstraintLayout>
+
+
+</android.support.design.widget.CoordinatorLayout>

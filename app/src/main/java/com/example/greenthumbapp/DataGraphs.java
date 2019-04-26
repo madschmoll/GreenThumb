@@ -1,9 +1,10 @@
 package com.example.greenthumbapp;
 
-import android.content.Intent;
 import android.graphics.Color;
-import android.support.v7.app.AppCompatActivity;
+import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.view.View;
 import android.widget.EditText;
@@ -11,11 +12,10 @@ import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
 import android.util.Log;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
-public class DataGraphs extends AppCompatActivity {
+public class DataGraphs extends Fragment {
     private static final String TAG = "DataGraphs";
     private LineGraphSeries<DataPoint> series1;
     private Button addPoint;
@@ -24,17 +24,19 @@ public class DataGraphs extends AppCompatActivity {
     GraphView plot;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_data_graphs);
-
-        addPoint = (Button) findViewById(R.id.btnAddPt);
-        mX = (EditText) findViewById(R.id.numX);
-        mY = (EditText) findViewById(R.id.numY);
-        plot = (GraphView) findViewById(R.id.graph);
+        View rootView = inflater.inflate(R.layout.fragment_data_graphs, container, false);
+        addPoint = (Button) rootView.findViewById(R.id.btnAddPt);
+        mX = (EditText) rootView.findViewById(R.id.numX);
+        mY = (EditText) rootView.findViewById(R.id.numY);
+        plot = (GraphView) rootView.findViewById(R.id.graph);
         pointsArray = new ArrayList<>();
 
         init();
+
+        return inflater.inflate(R.layout.fragment_data_graphs, container, false);
     }
 
     private void init(){
@@ -50,7 +52,7 @@ public class DataGraphs extends AppCompatActivity {
                     pointsArray.add(new XYvalues(x,y));
                     init();
                 }else {
-                    toastMessage("You must fill out both fields!");
+               //     toastMessage("You must fill out both fields!");
                 }
             }
         });
@@ -156,25 +158,5 @@ public class DataGraphs extends AppCompatActivity {
         return array;
     }
 
-    /**
-     * customizable toast
-     * @param message
-     */
-    private void toastMessage(String message){
-        Toast.makeText(this,message, Toast.LENGTH_SHORT).show();
-    }
 
-    public void goToMyPlants(View v){
-        if(v.getId() == R.id.my_plants){
-            //handle the click here and make whatever you want
-            startActivity(new Intent(DataGraphs.this, MyPlants.class));
-        }
-    }
-
-    /*public void goToLearnMore(View v){
-        if(v.getId() == R.id.learn_more){
-            //handle the click here and make whatever you want
-            startActivity(new Intent(DataGraphs.this, LearnMore.class));
-        }
-    }*/
 }

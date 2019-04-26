@@ -6,63 +6,11 @@
     android:layout_height="match_parent"
     tools:context=".DataGraphs">
 
-    <android.support.design.widget.AppBarLayout
-        android:id="@+id/appbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom">
-
-        <android.support.design.widget.TabLayout
-            android:id="@+id/pages"
-            android:layout_width="448dp"
-            android:layout_height="wrap_content"
-            android:background="@color/primaryGreenDark"
-            app:tabIconTint="@android:color/background_light"
-            app:tabMinWidth="140dp"
-            app:tabMode="scrollable"
-            app:tabTextColor="@android:color/background_light">
-
-            <android.support.design.widget.TabItem
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:icon="@drawable/my_plants"
-                android:text="@string/my_plants" />
-
-            <android.support.design.widget.TabItem
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:icon="@drawable/history_icon"
-                android:text="@string/history" />
-
-            <android.support.design.widget.TabItem
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:icon="@drawable/learn_more_icon"
-                android:text="@string/learn_more" />
-        </android.support.design.widget.TabLayout>
-
-    </android.support.design.widget.AppBarLayout>
-
-    <android.support.design.widget.AppBarLayout
-        android:id="@+id/toolbar2Layout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar2"
-            android:layout_width="match_parent"
-            android:layout_height="66dp"
-            android:background="@color/primaryGreenDark"
-            android:minHeight="?attr/actionBarSize"
-            android:theme="?attr/actionBarTheme"
-            app:logo="@drawable/logo_icons" />
-    </android.support.design.widget.AppBarLayout>
-
     <android.support.constraint.ConstraintLayout
         android:id="@+id/frameLayout"
         android:layout_width="match_parent"
         android:layout_height="582dp"
-        android:layout_gravity="center"
+        android:layout_gravity="top"
         android:minHeight="250dp"
         tools:layout_editor_absoluteY="73dp">
 
@@ -70,7 +18,7 @@
             android:id="@+id/graph"
             android:layout_width="348dp"
             android:layout_height="233dp"
-            android:layout_marginTop="92dp"
+            android:layout_marginTop="10dp"
             app:layout_constrainedHeight="true"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.492"

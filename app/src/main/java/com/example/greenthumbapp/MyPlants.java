@@ -1,29 +1,21 @@
 package com.example.greenthumbapp;
 
-import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
+import android.view.LayoutInflater;
+import android.view.ViewGroup;
 
-public class MyPlants extends AppCompatActivity {
+public class MyPlants extends Fragment {
+    private TabLayout tabs;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_my_plants);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        return inflater.inflate(R.layout.fragment_my_plants, container, false);
     }
 
-    public void goToHistory(View v){
-        if(v.getId() == R.id.history_tab){
-            //handle the click here and make whatever you want
-            startActivity(new Intent(MyPlants.this, DataGraphs.class));
-        }
-    }
 
-    public void goToLearnMore(View v){
-        if(v.getId() == R.id.learn_more_tab){
-            //handle the click here and make whatever you want
-            startActivity(new Intent(MyPlants.this, LearnMore.class));
-        }
-    }
 }
