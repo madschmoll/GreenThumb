@@ -10,5 +10,6 @@
     <string name="go_to_dash">Continue</string>
     <string name="title_activity_main2">Green Thumb App</string>
     <string name="percent_value">34</string>
+    <string name="bluetooth_title">Bluetooth</string>
 
 </resources>

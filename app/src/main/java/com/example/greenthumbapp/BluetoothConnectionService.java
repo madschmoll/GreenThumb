@@ -13,7 +13,9 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.nio.charset.Charset;
 import java.util.UUID;
-
+import android.content.Intent;
+import android.view.View;
+import android.widget.TextView;
 
 
 public class BluetoothConnectionService {
@@ -42,6 +44,13 @@ public class BluetoothConnectionService {
       // ??   start();
     }
 
+    public ConnectedThread getConnectedThread(){
+        return mConnectedThread;
+    }
+
+    public String getMessage(){
+        return this.mConnectedThread.getInput();
+    }
 
     /**
      * This thread runs while listening for incoming connections. It behaves
@@ -214,6 +223,9 @@ public class BluetoothConnectionService {
         private final BluetoothSocket mmSocket;
         private final InputStream mmInStream;
         private final OutputStream mmOutStream;
+        private Context context;
+
+        private String input = "nothing yet";
 
         public ConnectedThread(BluetoothSocket socket) {
             Log.d(TAG, "ConnectedThread: Starting.");
@@ -239,24 +251,38 @@ public class BluetoothConnectionService {
 
             mmInStream = tmpIn;
             mmOutStream = tmpOut;
+
+        }
+
+        public String getInput(){
+            return input;
+        }
+
+        public void setInput(String msfg){
+            this.input = msfg;
         }
 
         public void run(){
             byte[] buffer = new byte[1024];  // buffer store for the stream
-
+            String incomingMessage;
             int bytes; // bytes returned from read()
+            TextView val;
 
             // Keep listening to the InputStream until an exception occurs
             while (true) {
                 // Read from the InputStream
                 try {
                     bytes = mmInStream.read(buffer);
-                    String incomingMessage = new String(buffer, 0, bytes);
+                    incomingMessage = new String(buffer, 0, bytes);
+                    setInput(incomingMessage);
                     Log.d(TAG, "InputStream: " + incomingMessage);
+                    Log.d(TAG, "INPUT VARIABLE: " + input);
+
                 } catch (IOException e) {
                     Log.e(TAG, "write: Error reading Input Stream. " + e.getMessage() );
                     break;
                 }
+
             }
         }
 
