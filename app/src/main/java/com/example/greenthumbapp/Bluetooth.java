@@ -9,18 +9,26 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.os.Message;
 import android.widget.Button;
 import android.widget.EditText;
+import java.util.Date;
+import java.util.Locale;
+import java.text.SimpleDateFormat;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.annotation.TargetApi;
+import android.annotation.SuppressLint;
 
 import org.w3c.dom.Text;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.UUID;
@@ -37,12 +45,15 @@ public class Bluetooth extends AppCompatActivity
 
     Button btnStartConnection;
     Button btnContinue;
+    public String MSG_KEY = "msgKey";
 
 
     private static final UUID MY_UUID_INSECURE =
             UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");
 
     BluetoothDevice mBTDevice;
+
+    BroadcastReceiver mReceiver;
 
     public ArrayList<BluetoothDevice> mBTDevices = new ArrayList<>();
 
@@ -51,9 +62,6 @@ public class Bluetooth extends AppCompatActivity
     ListView lvNewDevices;
 
     TextView bluetoothVal;
-
-    String bluetoothValue;
-    String msg;
 
 
     @Override
@@ -65,9 +73,10 @@ public class Bluetooth extends AppCompatActivity
         lvNewDevices = (ListView) findViewById(R.id.lvNewDevices);
         mBTDevices = new ArrayList<>();
 
-        bluetoothVal = (TextView) findViewById(R.id.plant1SoilMoistureValue);
+        bluetoothVal = (TextView) findViewById(R.id.bluetoothVal);
 
-       btnStartConnection = (Button) findViewById(R.id.btnStartConnection);
+        btnStartConnection = (Button) findViewById(R.id.btnStartConnection);
+
         //Broadcasts when bond state changes (ie:pairing)
         IntentFilter filter = new IntentFilter(BluetoothDevice.ACTION_BOND_STATE_CHANGED);
         registerReceiver(mBroadcastReceiver4, filter);
@@ -75,7 +84,6 @@ public class Bluetooth extends AppCompatActivity
         mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
 
         lvNewDevices.setOnItemClickListener(Bluetooth.this);
-
 
         btnStartConnection.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -91,13 +99,32 @@ public class Bluetooth extends AppCompatActivity
             }
         });
 
-
-
-
-        // BottomNavigationView navigation = findViewById(R.id.navigation);
-     //   navigation.setOnNavigationItemSelectedListener(this);
-
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        IntentFilter intentFilter = new IntentFilter(
+                "android.intent.action.Bluetooth");
+
+        mReceiver = new BroadcastReceiver() {
+
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                //extract your message from intent
+                String msg_for_me = intent.getStringExtra("msgKey");
+                //log your message value
+                Log.i("SMV from Bluetooth", msg_for_me);
+
+                bluetoothVal.setText(msg_for_me);
+
+            }
+        };
+        //registering your receiver
+        this.registerReceiver(mReceiver, intentFilter);
+    }
+
 
     // Create a BroadcastReceiver for ACTION_FOUND
     private final BroadcastReceiver mBroadcastReceiver1 = new BroadcastReceiver() {
@@ -230,7 +257,7 @@ public class Bluetooth extends AppCompatActivity
 
 
     //create method for starting connection
-//***remember the conncction will fail and app will crash if you haven't paired first
+   //***remember the conncction will fail and app will crash if you haven't paired first
     public void startConnection(){
         startBTConnection(mBTDevice,MY_UUID_INSECURE);
     }

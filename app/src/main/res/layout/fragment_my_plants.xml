@@ -14,6 +14,7 @@
         android:minHeight="250dp"
         tools:layout_editor_absoluteY="5dp">
 
+
         <ImageView
             android:id="@+id/plant1"
             android:layout_width="360dp"
@@ -88,38 +89,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
 
-            android:layout_alignLeft="@id/plant1"
-            android:layout_alignTop="@id/plant1"
-            android:layout_alignRight="@id/plant1"
-            android:layout_alignBottom="@id/plant1"
-
-            android:layout_margin="1dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
-            android:layout_marginBottom="8dp"
-
-            android:gravity="center"
-            android:text="Soil Moisture Value:"
-            android:textColor="#4f4c4d"
-            android:textSize="20sp"
-
-            app:layout_constraintBottom_toBottomOf="@+id/plant1"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.54"
-            app:layout_constraintStart_toStartOf="@+id/plant1"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.201"
-            android:layout_alignStart="@id/plant1" />
-
-
-        <TextView
-            android:id="@+id/plant1SoilMoistureValue"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-
             android:layout_alignStart="@id/plant1"
             android:layout_alignLeft="@id/plant1"
             android:layout_alignTop="@id/plant1"
@@ -135,16 +104,17 @@
 
             android:layout_marginBottom="8dp"
             android:gravity="center"
-            android:text="@string/percent_value"
+            android:text="Soil Moisture Value:"
             android:textColor="#4f4c4d"
 
-            android:textSize="80sp"
+            android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="@+id/plant1"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.483"
+            app:layout_constraintHorizontal_bias="0.54"
             app:layout_constraintStart_toStartOf="@+id/plant1"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.827" />
+            app:layout_constraintVertical_bias="0.201" />
+
 
         <TextView
             android:id="@+id/percentSign"
@@ -177,6 +147,24 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.877" />
 
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="133dp"
+            android:layout_height="103dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginBottom="8dp"
+            android:text="XX"
+            android:textColor="#4f4c4d"
+            android:gravity="center"
+            android:textSize="80sp"
+            app:layout_constraintBottom_toBottomOf="@+id/plant1"
+            app:layout_constraintEnd_toStartOf="@+id/percentSign"
+            app:layout_constraintStart_toEndOf="@+id/plant1Icon"
+            app:layout_constraintTop_toBottomOf="@+id/smv_label" />
 
     </android.support.constraint.ConstraintLayout>
 

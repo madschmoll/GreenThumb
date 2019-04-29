@@ -1,17 +1,24 @@
 package com.example.greenthumbapp;
 
+import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothServerSocket;
 import android.bluetooth.BluetoothSocket;
 import android.content.Context;
+import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.util.Log;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.nio.charset.Charset;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 import java.util.UUID;
 import android.content.Intent;
 import android.view.View;
@@ -20,6 +27,7 @@ import android.widget.TextView;
 
 public class BluetoothConnectionService {
     private static final String TAG = "BluetoothConnectionServ";
+    private static final String MSG_KEY = "msgKey";
 
     private static final String appName = "MYAPP";
 
@@ -48,9 +56,6 @@ public class BluetoothConnectionService {
         return mConnectedThread;
     }
 
-    public String getMessage(){
-        return this.mConnectedThread.getInput();
-    }
 
     /**
      * This thread runs while listening for incoming connections. It behaves
@@ -225,16 +230,17 @@ public class BluetoothConnectionService {
         private final OutputStream mmOutStream;
         private Context context;
 
-        private String input = "nothing yet";
 
-        public ConnectedThread(BluetoothSocket socket) {
+        public ConnectedThread(BluetoothSocket socket, Context context) {
             Log.d(TAG, "ConnectedThread: Starting.");
+
+            this.context = context;
 
             mmSocket = socket;
             InputStream tmpIn = null;
             OutputStream tmpOut = null;
 
-            //dismiss the progressdialog when connection is established
+            //dismiss the progress dialog when connection is established
             try{
                 mProgressDialog.dismiss();
             }catch (NullPointerException e){
@@ -254,13 +260,6 @@ public class BluetoothConnectionService {
 
         }
 
-        public String getInput(){
-            return input;
-        }
-
-        public void setInput(String msfg){
-            this.input = msfg;
-        }
 
         public void run(){
             byte[] buffer = new byte[1024];  // buffer store for the stream
@@ -274,9 +273,16 @@ public class BluetoothConnectionService {
                 try {
                     bytes = mmInStream.read(buffer);
                     incomingMessage = new String(buffer, 0, bytes);
-                    setInput(incomingMessage);
                     Log.d(TAG, "InputStream: " + incomingMessage);
-                    Log.d(TAG, "INPUT VARIABLE: " + input);
+
+                    Intent i = new Intent("android.intent.action.Bluetooth").putExtra("msgKey",  incomingMessage);
+                    context.sendBroadcast(i);
+
+                    Intent j = new Intent("android.intent.action.Main2Activity").putExtra("msgKey",  incomingMessage);
+                    context.sendBroadcast(j);
+
+                    Intent k = new Intent("android.intent.action.MyPlants").putExtra("msgKey",  incomingMessage);
+                    context.sendBroadcast(k);
 
                 } catch (IOException e) {
                     Log.e(TAG, "write: Error reading Input Stream. " + e.getMessage() );
@@ -309,7 +315,7 @@ public class BluetoothConnectionService {
         Log.d(TAG, "connected: Starting.");
 
         // Start the thread to manage the connection and perform transmissions
-        mConnectedThread = new ConnectedThread(mmSocket);
+        mConnectedThread = new ConnectedThread(mmSocket, this.mContext);
         mConnectedThread.start();
     }
 
