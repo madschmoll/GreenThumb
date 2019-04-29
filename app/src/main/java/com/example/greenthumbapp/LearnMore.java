@@ -16,6 +16,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.HashMap;
+
 public class LearnMore extends Fragment {
     String API_KEY = "b1da5642a72e4cc4b9edc6e0a66eee0c";
     String CATEGORY = "home-gardening";
@@ -43,7 +44,7 @@ public class LearnMore extends Fragment {
         }else{
             Toast.makeText(getActivity().getApplicationContext(), "No Internet Connection", Toast.LENGTH_LONG).show();
         }
-        return inflater.inflate(R.layout.fragment_learn_more, container, false);
+        return rootView;
     }
     class DownloadNews extends AsyncTask<String, Void, String> {
         @Override

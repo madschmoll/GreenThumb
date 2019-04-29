@@ -25,7 +25,6 @@ public class MyPlants extends Fragment {
         public void onReceive(Context context, Intent intent) {
             // Get extra data included in the Intent
             String message = intent.getStringExtra("message");
-            Log.d("receiver", "Got message: " + message);
             bluetoothVal.setText(message);
         }
     };
@@ -44,59 +43,4 @@ public class MyPlants extends Fragment {
 
     }
 
-    public void updateSMVal(String t){
-        bluetoothVal.setText(t);
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-
-        IntentFilter intentFilter = new IntentFilter(
-                "android.intent.action.MyPlants");
-
-        mReceiver = new BroadcastReceiver() {
-
-            @Override
-            public void onReceive(Context context, Intent intent) {
-                //extract your message from intent
-                String msg_for_me = intent.getStringExtra("msgKey");
-                //log your message value
-                Log.i("SMV from Plants", msg_for_me);
-                bluetoothVal.setText(msg_for_me);
-            }
-        };
-
-        //registering your receiver
-        getActivity().registerReceiver(mReceiver, intentFilter);
-    }
-
-
-//    @Override
-//    public void onResume() {
-//        super.onResume();
-//
-//        IntentFilter intentFilter = new IntentFilter(
-//                "android.intent.action.MyPlants");
-//
-//        mReceiver = new BroadcastReceiver() {
-//
-//            @Override
-//            public void onReceive(Context context, Intent intent) {
-//                //extract your message from intent
-//                bluetoothVal = getActivity().getBluetoothVal();
-//                String msg_for_me = intent.getStringExtra("msgKey");
-//                //log your message value
-//                Log.i("SMV from MyPlants", msg_for_me);
-//
-//                bluetoothVal.setText(msg_for_me);
-//            }
-//        };
-//
-//        //registering your receiver
-//
-//        getActivity().registerReceiver(mReceiver, intentFilter);
-//    }
-//
-//
 }

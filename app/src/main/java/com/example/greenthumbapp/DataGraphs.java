@@ -1,8 +1,13 @@
 package com.example.greenthumbapp;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.graphics.Color;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.support.v4.content.LocalBroadcastManager;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -19,9 +24,19 @@ public class DataGraphs extends Fragment {
     private static final String TAG = "DataGraphs";
     private LineGraphSeries<DataPoint> series1;
     private Button addPoint;
-    private EditText mX,mY;
     private ArrayList<XYvalues> pointsArray;
     GraphView plot;
+    private String SMV;
+
+    private BroadcastReceiver mMessageReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            // Get extra data included in the Intent
+            String message = intent.getStringExtra("message");
+            Log.d("receiver", "Got message: " + message);
+            SMV = message;
+        }
+    };
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -29,31 +44,30 @@ public class DataGraphs extends Fragment {
         super.onCreate(savedInstanceState);
         View rootView = inflater.inflate(R.layout.fragment_data_graphs, container, false);
         addPoint = (Button) rootView.findViewById(R.id.btnAddPt);
-        mX = (EditText) rootView.findViewById(R.id.numX);
-        mY = (EditText) rootView.findViewById(R.id.numY);
+
         plot = (GraphView) rootView.findViewById(R.id.graph);
         pointsArray = new ArrayList<>();
 
-        init();
+        LocalBroadcastManager.getInstance(getContext()).registerReceiver(mMessageReceiver,
+                new IntentFilter("custom-event-name"));
 
-        return inflater.inflate(R.layout.fragment_data_graphs, container, false);
+        init(1);
+
+        return rootView;
     }
 
-    private void init(){
+    private void init(final double xVal){
         series1 = new LineGraphSeries<>();
 
         addPoint.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(!mX.getText().toString().equals("") && !mY.getText().toString().equals("") ){
-                    double x = Double.parseDouble(mX.getText().toString());
-                    double y = Double.parseDouble(mY.getText().toString());
-                    Log.d(TAG, "onClick: Adding a new point. (x,y): (" + x + "," + y + ")" );
-                    pointsArray.add(new XYvalues(x,y));
-                    init();
-                }else {
-               //     toastMessage("You must fill out both fields!");
-                }
+                double y = Double.parseDouble(SMV);
+                double x = xVal;
+                Log.d(TAG, "onClick: Adding a new point. (x,y): (" + x + "," + y + ")" );
+                pointsArray.add(new XYvalues(x,y));
+                init(xVal + 2);
+
             }
         });
 
@@ -92,7 +106,7 @@ public class DataGraphs extends Fragment {
 
         //set manual x bounds
         plot.getViewport().setYAxisBoundsManual(true);
-        plot.getViewport().setMaxY(150);
+        plot.getViewport().setMaxY(45);
         plot.getViewport().setMinY(0);
 
         //set manual y bounds
@@ -103,6 +117,8 @@ public class DataGraphs extends Fragment {
         plot.addSeries(series1);
 
     }
+
+
 
     /**
      * Sorts an ArrayList<XYValue> with respect to the x values.

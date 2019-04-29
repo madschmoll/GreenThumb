@@ -27,8 +27,7 @@
                 android:background="#FFFFFF"
                 android:divider="#F5F5F5"
                 android:dividerHeight="1dp"
-                android:visibility="visible"
-                />
+                android:visibility="visible" />
 
             <ProgressBar
                 android:id="@+id/loader"

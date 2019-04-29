@@ -73,8 +73,6 @@ public class Bluetooth extends AppCompatActivity
         lvNewDevices = (ListView) findViewById(R.id.lvNewDevices);
         mBTDevices = new ArrayList<>();
 
-        bluetoothVal = (TextView) findViewById(R.id.bluetoothVal);
-
         btnStartConnection = (Button) findViewById(R.id.btnStartConnection);
 
         //Broadcasts when bond state changes (ie:pairing)
@@ -116,8 +114,6 @@ public class Bluetooth extends AppCompatActivity
                 String msg_for_me = intent.getStringExtra("msgKey");
                 //log your message value
                 Log.i("SMV from Bluetooth", msg_for_me);
-
-                bluetoothVal.setText(msg_for_me);
 
             }
         };
