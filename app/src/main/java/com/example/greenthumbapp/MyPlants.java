@@ -40,7 +40,7 @@ public class MyPlants extends Fragment {
                 new IntentFilter("custom-event-name"));
 
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_my_plants, container, false);
+        return rootView;
 
     }
 

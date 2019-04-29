@@ -65,11 +65,9 @@ public class Main2Activity extends AppCompatActivity
                 String msg_for_me = intent.getStringExtra("msgKey");
                 //log your message value
                 Log.i("SMV from Main2Activity", msg_for_me);
-                MyPlants fragment = (MyPlants) getSupportFragmentManager().
-                        findFragmentById(R.id.nav_my_plants);
 
                 sendMessage(msg_for_me);
-                
+
             }
         };
 
