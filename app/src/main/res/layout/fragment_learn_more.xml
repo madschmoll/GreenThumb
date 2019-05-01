@@ -9,7 +9,7 @@
     <android.support.constraint.ConstraintLayout
         android:id="@+id/frameLayout"
         android:layout_width="match_parent"
-        android:layout_height="582dp"
+        android:layout_height="707dp"
         android:layout_gravity="center"
         android:minHeight="250dp"
         tools:layout_editor_absoluteY="73dp">
@@ -33,11 +33,10 @@
                 android:id="@+id/loader"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerInParent="true"/>
+                android:layout_centerInParent="true" />
 
 
         </RelativeLayout>
-
 
 
     </android.support.constraint.ConstraintLayout>
